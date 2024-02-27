@@ -11,6 +11,7 @@ const TrendingMovies = () => {
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
+    // eslint-disable-next-line react-hooks/exhaustive-deps
     getTrendingMovies();
   }, []);
 
