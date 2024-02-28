@@ -13,15 +13,15 @@ export const Label = styled.label`
 export const Search = styled.input`
   width: 300px;
   padding: 10px 26px;
-  background-color: #353535;
-  border: 2px solid #555555;
+  background-color: #323232;
+  border: 2px solid #b4b7b9;
   border-radius: 4px;
 
   color: #f7eee8;
 
   &:focus {
     outline: none;
-    border-color: #b94705;
+    border-color: #fcff00;
   }
 `;
 
@@ -30,29 +30,38 @@ export const SearchIcon = styled(IoMdSearch)`
   top: 12px;
   left: 8px;
 `;
-// ${Search}:focus-within & {
-//     color: #b94705;
-//   }
+
 export const SearchButton = styled.button`
   position: absolute;
   height: 100%;
   padding: 0 12px;
   right: 0;
-  border: none;
-  background-color: #b94705;
-  color: #f7eee8;
+
+  border: 2px solid #00000000;
+  background-color: #00000000;
+  color: #b4b7b9;
+  border-left: 2px solid #b4b7b9;
   border-bottom-right-radius: 4px;
   border-top-right-radius: 4px;
 
   cursor: pointer;
 
-  transition: background 250ms ease-in-out;
+  text-transform: uppercase;
+  transition: background 250ms ease-in-out, color 250ms ease-in-out,
+    border 250ms ease-in-out;
+
+  &:focus {
+    background-color: #fcff00;
+    color: #323232;
+  }
 
   &:hover {
-    background-color: #e05200;
+    background-color: #fcff00;
+    color: #323232;
   }
 
   &:active {
-    background-color: #555555;
+    background-color: #55555500;
+    color: #fcff00;
   }
 `;

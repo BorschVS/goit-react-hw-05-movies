@@ -10,7 +10,7 @@ const options = {
   },
 };
 
-const getMovies = async () => {
+const getMoviesCollection = async () => {
   try {
     const response = await axios(options);
     return response.data;
@@ -19,4 +19,20 @@ const getMovies = async () => {
   }
 };
 
-export default getMovies;
+export const getTrendingMovies = async () => {
+  try {
+    const collection = await getMoviesCollection();
+    return collection.results;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+export const getMovieById = async id => {
+  try {
+    const movies = await getTrendingMovies();
+    return movies.find(movie => movie.id === id);
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};

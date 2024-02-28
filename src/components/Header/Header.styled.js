@@ -2,10 +2,13 @@ import styled from '@emotion/styled';
 import { NavLink } from 'react-router-dom';
 
 export const StyledHeader = styled.header`
-  background-color: #b94705;
+  border: 2px solid #fcff00;
+
+  margin-bottom: 40px;
 `;
 
 export const List = styled.ul`
+  margin: 0;
   display: flex;
   flex-direction: row;
   justify-content: center;
@@ -16,24 +19,27 @@ export const Item = styled.li`
   justify-content: center;
   flex-basis: calc((100% - 30% * 2) / 2);
   transition: border 250ms ease-in-out, transform 250ms ease-in-out,
-    background-color 250ms ease-in-out;
+    background-color 250ms ease-in-out, color 1s ease-in-out;
 
-  border: 2px solid #353535;
+  border-left: 2px solid #fcff00;
+  border-right: 2px solid #fcff00;
+
   &:first-of-type {
-    border-right: 1px solid #353535;
+    border-right: 1px solid #fcff00;
   }
+
   &:nth-of-type(n + 2) {
-    border-left: 1px solid #353535;
+    border-left: 1px solid #fcff00;
   }
 
   &:hover {
-    background-color: #353535;
+    background-color: #fcff00;
     transform: scale(1.02);
   }
 
   &:active {
-    background-color: #1f1f1f;
-    border-color: #1f1f1f;
+    background-color: #fcff00;
+    border-color: #fcff00;
 
     transform: scale(1);
   }
@@ -47,7 +53,11 @@ export const Link = styled(NavLink)`
   padding: 20px 20px;
   text-decoration: none;
   text-transform: uppercase;
-  &:visited {
-    color: white;
+
+  transition: color 250ms ease-in-out, letter-spacing 250ms ease-in-out;
+
+  &:hover {
+    letter-spacing: 0.06em;
+    color: #323232;
   }
 `;

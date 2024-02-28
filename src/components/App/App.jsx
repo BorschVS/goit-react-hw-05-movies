@@ -8,6 +8,7 @@ import Layout from '../Layout';
 // pages
 const Home = lazy(() => import('pages/Home'));
 const Movies = lazy(() => import('pages/Movies'));
+const MovieDetails = lazy(() => import('pages/MovieDetails'));
 
 const App = () => (
   <main>
@@ -15,6 +16,7 @@ const App = () => (
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
+          <Route path=":id" element={<MovieDetails />} />
           <Route path="movies" element={<Movies />} />
         </Route>
       </Routes>
