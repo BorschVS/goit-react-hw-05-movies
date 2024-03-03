@@ -4,6 +4,7 @@ import { LoadingProvider } from 'hooks/useLoader';
 import { lazy } from 'react';
 // components
 import Layout from '../Layout';
+import Cast from 'pages/Cast';
 
 // pages
 const Home = lazy(() => import('pages/Home'));
@@ -16,8 +17,10 @@ const App = () => (
       <Routes>
         <Route path="/" element={<Layout />}>
           <Route index element={<Home />} />
-          <Route path=":id" element={<MovieDetails />} />
-          <Route path="movies" element={<Movies />} />
+          <Route path=":id" element={<MovieDetails />}>
+            <Route path="credits" element={<Cast />} />
+          </Route>
+          <Route path="/movies" element={<Movies />} />
         </Route>
       </Routes>
     </LoadingProvider>

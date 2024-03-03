@@ -1,7 +1,7 @@
 import styled from '@emotion/styled';
 import { IoMdSearch } from 'react-icons/io';
 
-export const Form = styled.form`
+export const SearchWrapper = styled.div`
   display: flex;
   justify-content: center;
 `;

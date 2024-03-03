@@ -1,8 +1,9 @@
 import styled from '@emotion/styled';
 
 export const ThumbWrapper = styled.div`
-  width: 250px;
+  max-width: 22vw;
   height: auto;
+  background-color: #323232;
 `;
 
 export const Img = styled.img`

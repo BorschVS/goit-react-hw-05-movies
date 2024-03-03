@@ -1,18 +1,30 @@
 // import { useSearchParams } from 'react-router-dom';
-import { Form, Label, Search, SearchButton } from './SearchMovies.styled';
+import {
+  SearchWrapper,
+  Label,
+  Search,
+  SearchButton,
+} from './SearchMovies.styled';
 import { SearchIcon } from './SearchMovies.styled';
+import { useState } from 'react';
 
-const SearchMovies = () => {
-  // [searchParams, setSearchParams] = useSearchParams();
+const SearchMovies = ({ updateQuery }) => {
+  const [searchQuery, setSearchQuery] = useState('');
 
   return (
-    <Form>
+    <SearchWrapper>
       <Label>
-        <Search type="text" onChange={e => e.target.value} />
+        <Search
+          type="text"
+          value={searchQuery}
+          onChange={e => setSearchQuery(e.currentTarget.value)}
+        />
         <SearchIcon />
-        <SearchButton type="button">Search</SearchButton>
+        <SearchButton onClick={() => updateQuery(searchQuery)} type="button">
+          Search
+        </SearchButton>
       </Label>
-    </Form>
+    </SearchWrapper>
   );
 };
 

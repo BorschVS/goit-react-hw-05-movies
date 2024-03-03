@@ -2,7 +2,6 @@ import axios from 'axios';
 
 const options = {
   method: 'GET',
-  url: 'https://api.themoviedb.org/3/trending/all/day',
   headers: {
     accept: 'application/json',
     Authorization:
@@ -12,7 +11,10 @@ const options = {
 
 const getMoviesCollection = async () => {
   try {
-    const response = await axios(options);
+    const response = await axios({
+      ...options,
+      url: 'https://api.themoviedb.org/3/trending/all/day',
+    });
     return response.data;
   } catch (error) {
     throw new Error(error.message);
@@ -31,8 +33,37 @@ export const getTrendingMovies = async () => {
 export const getMovieById = async id => {
   try {
     const movies = await getTrendingMovies();
-    return movies.find(movie => movie.id === id);
+    console.log(movies);
+    return movies.find(movie => movie.id === Number(id));
   } catch (error) {
     throw new Error(error.message);
   }
 };
+
+export const getCast = async id => {
+  try {
+    const cast = await axios({
+      ...options,
+      url: `https://api.themoviedb.org/3/movie/${id}/credits`,
+    });
+    return cast.data.cast;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+export const findMoviesByName = async query => {
+  try {
+    const movie = await axios({
+      ...options,
+      url: `https://api.themoviedb.org/3/search/movie?query=${query}`,
+    });
+    return movie.data.results;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
+// export const cancelRequest = () => {
+//   abortController.abort();
+// };

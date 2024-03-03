@@ -7,7 +7,7 @@ const slideInFromBottom = keyframes`
   }
 
   75% {
-    opacity: 0.5;
+    opacity: 0;
   }
   to {
     transform: translateY(0);
@@ -15,8 +15,8 @@ const slideInFromBottom = keyframes`
   }
 `;
 
-export const List = styled.div`
-  animation: ${slideInFromBottom} 0.5s ease-out; /* Применяем анимацию снизу */
+export const List = styled.ul`
+  animation: ${slideInFromBottom} 1s ease-in-out;
 
   list-style: none;
   display: flex;
@@ -24,14 +24,14 @@ export const List = styled.div`
   justify-content: center;
   flex-wrap: wrap;
   gap: 20px;
+`;
 
-  padding-top: 10px;
-
-  position: relative;
-  overflow: hidden;
+export const MoviesWrapper = styled.section`
+  min-height: 400px;
 `;
 
 export const Item = styled.li`
+  flex-basis: calc((100% - 20px * 4) / 4);
   transition: transform 250ms ease-in-out;
 
   &:hover {
