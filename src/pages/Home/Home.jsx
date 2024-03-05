@@ -1,5 +1,5 @@
 import TrendingMovies from 'components/TrendingMovies';
-import { PageWrapper, Title } from './Pages.styled';
+import { PageWrapper, Title } from './Home.styled';
 
 const Home = () => {
   return (

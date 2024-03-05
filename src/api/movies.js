@@ -52,6 +52,18 @@ export const getCast = async id => {
   }
 };
 
+export const getReviews = async id => {
+  try {
+    const reviews = await axios({
+      ...options,
+      url: `https://api.themoviedb.org/3/movie/${id}/reviews`,
+    });
+    return reviews.data.results;
+  } catch (error) {
+    throw new Error(error.message);
+  }
+};
+
 export const findMoviesByName = async query => {
   try {
     const movie = await axios({

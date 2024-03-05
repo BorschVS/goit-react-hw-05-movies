@@ -1,5 +1,6 @@
 import styled from '@emotion/styled';
 import { keyframes } from '@emotion/react';
+
 const slideInFromBottom = keyframes`
   from {
     transform: translateY(100%);
@@ -37,4 +38,18 @@ export const Item = styled.li`
   &:hover {
     transform: scale(1.04);
   }
+`;
+
+export const MovieThumb = styled.div`
+  width: 280px;
+  height: auto;
+`;
+
+export const Img = styled.img`
+  width: 100%;
+  display: block;
+
+  object-fit: cover;
+
+  background-color: #f8f8f8;
 `;
