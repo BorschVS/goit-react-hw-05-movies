@@ -1,0 +1,1 @@
+{"version":3,"file":"static/js/4.d631fca7.chunk.js","mappings":"+LAIA,EAJc,WACZ,OAAOA,EAAAA,EAAAA,KAAA,MAAAC,SAAI,uBACb,C","sources":["pages/Error/Error.jsx"],"sourcesContent":["const Error = () => {\n  return <h1>PAGE IS NOT DEFINED</h1>;\n};\n\nexport default Error;\n"],"names":["_jsx","children"],"sourceRoot":""}
