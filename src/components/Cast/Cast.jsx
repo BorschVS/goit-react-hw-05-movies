@@ -2,6 +2,7 @@ import { getCast } from 'api/movies';
 import { useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { CastItem, CastList, CastThumb, Img } from './Cast.styled';
+import fallbackImageUrl from 'img/fallback-200.png';
 
 const Cast = () => {
   const [isLoading, setLoading] = useState(false);
@@ -32,6 +33,10 @@ const Cast = () => {
               <Img
                 src={`https://image.tmdb.org/t/p/w500${profile_path}`}
                 alt={name}
+                onError={e => {
+                  e.target.onerror = null;
+                  e.target.src = fallbackImageUrl;
+                }}
               />
             </CastThumb>
           </CastItem>

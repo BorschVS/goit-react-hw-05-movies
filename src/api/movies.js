@@ -33,7 +33,6 @@ export const getTrendingMovies = async () => {
 export const getMovieById = async id => {
   try {
     const movies = await getTrendingMovies();
-    console.log(movies);
     return movies.find(movie => movie.id === Number(id));
   } catch (error) {
     throw new Error(error.message);

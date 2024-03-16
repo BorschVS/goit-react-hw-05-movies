@@ -58,3 +58,21 @@ export const CardInfo = styled.div`
 export const IconWrapper = styled.span`
   transform: scale(1.2);
 `;
+
+export const Accent = styled.span`
+  color: #fcff00;
+  text-transform: uppercase;
+  font-weigth: 500;
+`;
+
+export const Title = styled.h2`
+  font-size: 32px;
+`;
+
+export const Text = styled.p`
+  font-size: 18px;
+`;
+
+export const UpperText = styled.span`
+  text-transform: uppercase;
+`;

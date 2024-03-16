@@ -8,6 +8,7 @@ export const SearchWrapper = styled.div`
 
 export const Label = styled.label`
   position: relative;
+  margin-bottom: 40px;
 `;
 
 export const Search = styled.input`

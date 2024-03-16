@@ -20,7 +20,11 @@ const App = () => (
           <Route path="credits" element={<Cast />} />
           <Route path="reviews" element={<Reviews />} />
         </Route>
-        <Route path="/movies" element={<Movies />} />
+        <Route path="movies" element={<Movies />} />
+        <Route path="movies/:id" element={<MovieDetails />}>
+          <Route path="credits" element={<Cast />} />
+          <Route path="reviews" element={<Reviews />} />
+        </Route>
         <Route path="*" element={<Error />} />
       </Route>
     </Routes>

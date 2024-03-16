@@ -1,21 +1,29 @@
 import { findMoviesByName } from 'api/movies';
 import SearchMovies from 'components/SearchMovies';
 import { useEffect, useState } from 'react';
-import { useSearchParams } from 'react-router-dom';
+import { Link, useLocation, useSearchParams } from 'react-router-dom';
 import {
-  Accent,
-  Img,
-  MovieThumb,
+  List,
+  Item,
   MoviesWrapper,
+  MovieThumb,
+  Img,
+  Accent,
+  MovieInfo,
+  UpperText,
   Text,
   Title,
-} from './Movies.styled';
+} from 'components/TrendingMovies/TrendingMovies.styled';
+
+import fallbackImageUrl from 'img/fallback-280.png';
 
 const Movies = () => {
   const [isLoading, setLoading] = useState(false);
   const [searchParams, setSearchParams] = useSearchParams();
   const [movies, setMovies] = useState([]);
   const query = searchParams.get('query') ?? '';
+
+  const location = useLocation();
 
   useEffect(() => {
     setLoading(true);
@@ -41,38 +49,46 @@ const Movies = () => {
       <SearchMovies query={query} updateQuery={updateQueryString} />
 
       {!isLoading && (
-        <ul>
+        <List>
           {movies.map(
             ({
               id,
               title,
-              overview,
               poster_path,
               vote_average,
-              release_date,
+              original_title,
+              original_language,
             }) => (
-              <MoviesWrapper key={id}>
-                <MovieThumb>
-                  <Img
-                    src={`https://image.tmdb.org/t/p/w500${poster_path}`}
-                    alt={title}
-                  />
-                </MovieThumb>
-                <div>
-                  <Title>{title}</Title>
-                  <Text>{overview}</Text>
-                  <Text>
-                    <Accent>score </Accent>
-                    {vote_average}
-                  </Text>
-                  <Text>
-                    <Accent>release</Accent> {release_date}
-                  </Text>
-                </div>
-              </MoviesWrapper>
+              <Item key={id}>
+                <MoviesWrapper key={id}>
+                  <MovieThumb>
+                    <Link to={`${id}`} state={{ from: location }}>
+                      <Img
+                        src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+                        alt={title}
+                        onError={e => {
+                          e.target.onerror = null;
+                          e.target.src = fallbackImageUrl;
+                        }}
+                      />
+                      <MovieInfo>
+                        <Title> {title ? title : original_title}</Title>
+                        <Text>
+                          <Accent>score: </Accent>
+                          {vote_average}
+                        </Text>
+                        <Text>
+                          <Accent>language: </Accent>
+                          <UpperText>{original_language}</UpperText>
+                        </Text>
+                      </MovieInfo>
+                    </Link>
+                  </MovieThumb>
+                </MoviesWrapper>
+              </Item>
             )
           )}
-        </ul>
+        </List>
       )}
     </div>
   );

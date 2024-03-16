@@ -9,7 +9,7 @@ const Header = () => {
             <Link to="/">Home</Link>
           </Item>
           <Item>
-            <Link to="Movies">Movies</Link>
+            <Link to="movies">Movies</Link>
           </Item>
         </List>
       </nav>

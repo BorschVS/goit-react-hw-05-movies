@@ -8,9 +8,15 @@ import {
   MoviesWrapper,
   MovieThumb,
   Img,
+  MovieInfo,
+  Accent,
+  UpperText,
 } from './TrendingMovies.styled';
 import Container from 'components/Container';
 import Loader from 'components/Loader/Loader';
+import { Title, Text } from './TrendingMovies.styled';
+
+import fallbackImageUrl from 'img/fallback-280.png';
 
 const TrendingMovies = () => {
   const [isLoading, setLoading] = useState(false);
@@ -38,18 +44,42 @@ const TrendingMovies = () => {
         <List>
           {!isLoading ? (
             movies &&
-            movies.map(movie => (
-              <Item key={movie.id}>
-                <Link to={`${movie.id}`} state={{ from: location }}>
-                  <MovieThumb>
-                    <Img
-                      src={`https://image.tmdb.org/t/p/w500${movie.poster_path}`}
-                      alt={movie.name}
-                    />
-                  </MovieThumb>
-                </Link>
-              </Item>
-            ))
+            movies.map(
+              ({
+                id,
+                title,
+                poster_path,
+                vote_average,
+                original_language,
+                original_title,
+              }) => (
+                <Item key={id}>
+                  <Link to={`${id}`} state={{ from: location }}>
+                    <MovieThumb>
+                      <Img
+                        src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+                        alt={title}
+                        onError={e => {
+                          e.target.onerror = null;
+                          e.target.src = fallbackImageUrl;
+                        }}
+                      />
+                      <MovieInfo>
+                        <Title> {title ? title : original_title}</Title>
+                        <Text>
+                          <Accent>score: </Accent>
+                          {vote_average}
+                        </Text>
+                        <Text>
+                          <Accent>language: </Accent>
+                          <UpperText>{original_language}</UpperText>
+                        </Text>
+                      </MovieInfo>
+                    </MovieThumb>
+                  </Link>
+                </Item>
+              )
+            )
           ) : (
             <Loader />
           )}

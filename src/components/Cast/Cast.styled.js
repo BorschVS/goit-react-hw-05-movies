@@ -9,6 +9,26 @@ export const CastList = styled.ul`
   display: flex;
   justify-content: flex-start;
   gap: 10px;
+
+  &::-webkit-scrollbar {
+    width: 8px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background-color: #cdcdcd;
+    border-bottom-left-radius: 4px;
+    border-bottom-right-radius: 4px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background-color: #323232;
+    border-bottom-left-radius: 2px;
+    border-bottom-right-radius: 2px;
+  }
+
+  &::-webkit-scrollbar-thumb:hover {
+    background-color: #fcff00;
+  }
 `;
 
 export const CastItem = styled.li`

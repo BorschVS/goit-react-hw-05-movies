@@ -1,17 +1,31 @@
 import { useRef, useState, useEffect } from 'react';
-import { Accent, Title, Text } from 'pages/Movies/Movies.styled';
-import { CardInfo, PageWrapper, StyledLink } from './MovieDetails.styled';
-import { CardWrapper } from './MovieDetails.styled';
+import {
+  Accent,
+  Title,
+  Text,
+  UpperText,
+} from '../MovieDetails/MovieDetails.styled';
+//
+import {
+  CardInfo,
+  PageWrapper,
+  StyledLink,
+  CardWrapper,
+} from './MovieDetails.styled';
+//
 import { Outlet, useLocation, useParams } from 'react-router-dom';
+//
 import { Suspense } from 'react';
 import Loader from 'components/Loader';
 import { HiOutlineArrowLeft } from 'react-icons/hi2';
-
+//
 import { getMovieById } from 'api/movies';
 import {
   Img,
   MovieThumb,
 } from 'components/TrendingMovies/TrendingMovies.styled';
+
+import fallbackImageUrl from 'img/fallback-280.png';
 
 const MovieDetails = () => {
   const [isLoading, setLoading] = useState(false);
@@ -29,11 +43,17 @@ const MovieDetails = () => {
         setLoading(false);
       }
     })();
+  }, [id]);
 
-    // eslint-disable-next-line
-  }, []);
-
-  const { title, overview, vote_average, vote_count, poster_path } = movie;
+  const {
+    title,
+    overview,
+    original_language,
+    vote_average,
+    vote_count,
+    poster_path,
+    original_title,
+  } = movie || {};
 
   const location = useLocation();
   const backLinkToLocationRef = useRef(location.state?.from ?? '/');
@@ -46,16 +66,31 @@ const MovieDetails = () => {
         </StyledLink>
         <CardWrapper>
           <MovieThumb>
-            <Img src={`https://image.tmdb.org/t/p/w500${poster_path}`} />
+            <Img
+              src={`https://image.tmdb.org/t/p/w500${poster_path}`}
+              alt={title}
+              onError={e => {
+                e.target.onerror = null;
+                e.target.src = fallbackImageUrl;
+              }}
+            />
           </MovieThumb>
           <CardInfo>
-            <Title style={{ alignSelf: 'start' }}>{title}</Title>
+            <Title style={{ alignSelf: 'start' }}>
+              {title ? title : original_title}
+            </Title>
 
             <Accent>overiview</Accent>
             <Text>{overview}</Text>
 
             <Text>
+              <Accent>language: </Accent>
+              <UpperText>{original_language}</UpperText>
+            </Text>
+
+            <Text>
               <Accent>score: </Accent>
+
               {vote_average}
             </Text>
             <Text>
