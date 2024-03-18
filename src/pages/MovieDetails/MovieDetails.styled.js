@@ -67,6 +67,7 @@ export const Accent = styled.span`
 
 export const Title = styled.h2`
   font-size: 32px;
+  margin-top: 0;
 `;
 
 export const Text = styled.p`

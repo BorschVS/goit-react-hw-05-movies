@@ -22,13 +22,15 @@ const Movies = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [movies, setMovies] = useState([]);
   const query = searchParams.get('query') ?? '';
-
+  console.log(query);
   const location = useLocation();
 
   useEffect(() => {
     setLoading(true);
     try {
       (async () => {
+        console.log(query);
+
         const movies = await findMoviesByName(query);
         setMovies(movies);
       })();
@@ -40,7 +42,7 @@ const Movies = () => {
   }, [query]);
 
   const updateQueryString = query => {
-    const nextQuery = query !== '' ? { query } : {};
+    const nextQuery = { query };
     setSearchParams(nextQuery);
   };
 

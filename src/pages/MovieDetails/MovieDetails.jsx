@@ -35,8 +35,10 @@ const MovieDetails = () => {
     (async () => {
       try {
         setLoading(true);
-        const movie = await getMovieById(id);
-        setMovie(movie);
+        const movieInfo = await getMovieById(id);
+        if (movieInfo) {
+          setMovie(movieInfo);
+        }
       } catch (error) {
         throw new Error(error.message);
       } finally {
@@ -53,7 +55,7 @@ const MovieDetails = () => {
     vote_count,
     poster_path,
     original_title,
-  } = movie || {};
+  } = movie;
 
   const location = useLocation();
   const backLinkToLocationRef = useRef(location.state?.from ?? '/');

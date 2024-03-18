@@ -9,22 +9,13 @@ const options = {
   },
 };
 
-const getMoviesCollection = async () => {
-  try {
-    const response = await axios({
-      ...options,
-      url: 'https://api.themoviedb.org/3/trending/all/day',
-    });
-    return response.data;
-  } catch (error) {
-    throw new Error(error.message);
-  }
-};
-
 export const getTrendingMovies = async () => {
   try {
-    const collection = await getMoviesCollection();
-    return collection.results;
+    const movies = await axios({
+      ...options,
+      url: `https://api.themoviedb.org/3/trending/all/day`,
+    });
+    return movies.data.results;
   } catch (error) {
     throw new Error(error.message);
   }
@@ -32,8 +23,11 @@ export const getTrendingMovies = async () => {
 
 export const getMovieById = async id => {
   try {
-    const movies = await getTrendingMovies();
-    return movies.find(movie => movie.id === Number(id));
+    const movie = await axios({
+      ...options,
+      url: `https://api.themoviedb.org/3/movie/${id}`,
+    });
+    return movie.data;
   } catch (error) {
     throw new Error(error.message);
   }
@@ -74,7 +68,3 @@ export const findMoviesByName = async query => {
     throw new Error(error.message);
   }
 };
-
-// export const cancelRequest = () => {
-//   abortController.abort();
-// };
