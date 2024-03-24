@@ -31,7 +31,7 @@ const Reviews = () => {
     })();
   }, [id]);
 
-  return (
+  return ( reviews.length > 0 ?
     !isLoading && (
       <ReviewList>
         {reviews.map(({ id, author_details, url }) => (
@@ -55,7 +55,7 @@ const Reviews = () => {
           </ReviewItem>
         ))}
       </ReviewList>
-    )
+    ) : !isLoading && <p>There are no reviews</p>
   );
 };
 

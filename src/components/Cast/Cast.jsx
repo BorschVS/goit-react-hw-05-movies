@@ -23,7 +23,7 @@ const Cast = () => {
     })();
   }, [id]);
 
-  return (
+  return (cast.length > 0 ?
     !isLoading && (
       <CastList>
         {cast.map(({ id, name, profile_path }) => (
@@ -42,7 +42,7 @@ const Cast = () => {
           </CastItem>
         ))}
       </CastList>
-    )
+    ) : !isLoading && <p>Sorry, we have no information about the actors :c</p>
   );
 };
 
